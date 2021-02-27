@@ -6,7 +6,7 @@ Summary:	parse() - the opposite of format()
 Summary(pl.UTF-8):	parse() - odwrotność format()
 Name:		python3-parse
 Version:	1.19.0
-Release:	1
+Release:	2
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/parse/
