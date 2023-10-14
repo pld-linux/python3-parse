@@ -1,20 +1,20 @@
 #
 # Conditional build:
-%bcond_without	tests	# unit tests
+%bcond_with	tests	# unit tests (not included in sdist)
 
 Summary:	parse() - the opposite of format()
 Summary(pl.UTF-8):	parse() - odwrotność format()
 Name:		python3-parse
-Version:	1.19.0
-Release:	5
+Version:	1.19.1
+Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/parse/
 Source0:	https://files.pythonhosted.org/packages/source/p/parse/parse-%{version}.tar.gz
-# Source0-md5:	15e1e590c964254ac5fbea308a6ec6d4
+# Source0-md5:	325bbaddb7547e894ecbcd34624f6ce6
 URL:		https://pypi.org/project/parse/
 BuildRequires:	python3-modules >= 1:3.4
-BuildRequires:	python3-setuptools
+BuildRequires:	python3-setuptools >= 1:61.2
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 Requires:	python3-modules >= 1:3.4
@@ -31,6 +31,12 @@ pythonowej metody format().
 
 %prep
 %setup -q -n parse-%{version}
+
+# stub for setuptools
+cat >setup.py <<EOF
+from setuptools import setup
+setup()
+EOF
 
 %build
 %py3_build
