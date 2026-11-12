@@ -5,18 +5,22 @@
 Summary:	parse() - the opposite of format()
 Summary(pl.UTF-8):	parse() - odwrotność format()
 Name:		python3-parse
-Version:	1.20.2
+Version:	1.22.4
 Release:	1
 License:	MIT
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/parse/
 Source0:	https://files.pythonhosted.org/packages/source/p/parse/parse-%{version}.tar.gz
-# Source0-md5:	129951f4c2cece0ca6df437b522391e3
+# Source0-md5:	887f5ea1591e16a009b008f6600baf42
 URL:		https://pypi.org/project/parse/
 BuildRequires:	python3-build
 BuildRequires:	python3-installer
 BuildRequires:	python3-modules >= 1:3.4
 BuildRequires:	python3-setuptools >= 1:61.2
+%if %{with tests}
+BuildRequires:	python3-pytest
+BuildRequires:	python3-pytest-cov
+%endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 2.044
 Requires:	python3-modules >= 1:3.4
@@ -39,6 +43,7 @@ pythonowej metody format().
 
 %if %{with tests}
 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+PYTEST_PLUGINS=pytest_cov.plugin \
 %{__python3} -m pytest tests
 %endif
 
@@ -53,6 +58,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc LICENSE README.rst
-%{py3_sitescriptdir}/parse.py
-%{py3_sitescriptdir}/__pycache__/parse.cpython-*.py[co]
+%{py3_sitescriptdir}/parse
 %{py3_sitescriptdir}/parse-%{version}.dist-info
